@@ -9,7 +9,11 @@ import javafx.scene.control.Button;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 
-public class Latin_Translator extends Application {
+public class Latin_Translator_Alternative extends Application {
+	
+	private Label centerResult;
+	private Label leftResult;
+	private Label rightResult;
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -21,32 +25,15 @@ public class Latin_Translator extends Application {
 		Button leftButton = new Button("Sinister");
 		Button rightButton = new Button("Dexter");
 		
-		Label centerResult = new Label();
-		Label leftResult = new Label();
-		Label rightResult = new Label();
+		centerResult = new Label();
+		leftResult = new Label();
+		rightResult = new Label();
 		Label buttonTitle = new Label("LATIN");
 		Label resultsTitle = new Label("ENGLISH");
 		
-		centerButton.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				centerResult.setText("'Center'");
-			}
-		});
-		
-		leftButton.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				leftResult.setText("'Left'");
-			}
-		});
-		
-		rightButton.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				rightResult.setText("'Right'");
-			}
-		});
+		centerButton.setOnAction(new CenterButtonHandler());
+		rightButton.setOnAction(new RightButtonHandler());
+		leftButton.setOnAction(new LeftButtonHandler());
 		
 		centerButton.setMaxWidth(100);
 		leftButton.setMaxWidth(100);
@@ -76,5 +63,27 @@ public class Latin_Translator extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Translator");
 		primaryStage.show();
+	}
+
+
+	class CenterButtonHandler implements EventHandler<ActionEvent> {
+		@Override
+		public void handle(ActionEvent event) {
+			centerResult.setText("'Center'");
+		}
+	}
+	
+	class LeftButtonHandler implements EventHandler<ActionEvent> {
+		@Override
+		public void handle(ActionEvent event) {
+			leftResult.setText("'Left'");
+		}
+	}
+	
+	class RightButtonHandler implements EventHandler<ActionEvent> {
+		@Override
+		public void handle(ActionEvent event) {
+			rightResult.setText("'Right'");
+		}
 	}
 }
